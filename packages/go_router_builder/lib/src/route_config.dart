@@ -538,7 +538,7 @@ mixin $_mixinName on $routeDataClassName {
   String get subpath => RelativeGoRouteData.\$location($_locationArgs,$_locationQueryParams);
   
   @override
-  String get relativeLocation => './\$location';
+  String get relativeLocation => './\$subpath';
 
   @override
   void goRelative(BuildContext context) =>
