@@ -80,7 +80,7 @@ final GoRoute _goRouteDataBuild = GoRouteData.$route(
 );
 
 final GoRoute _relativeGoRouteDataBuild = RelativeGoRouteData.$route(
-  path: '/build',
+  path: 'build',
   factory: (GoRouterState state) => const _RelativeGoRouteDataBuild(),
 );
 
@@ -145,7 +145,7 @@ final GoRoute _goRouteDataBuildPage = GoRouteData.$route(
 );
 
 final GoRoute _relativeGoRouteDataBuildPage = RelativeGoRouteData.$route(
-  path: '/build-page',
+  path: 'build-page',
   factory: (GoRouterState state) => const _RelativeGoRouteDataBuildPage(),
 );
 
@@ -258,7 +258,7 @@ final GoRoute _goRouteDataRedirect = GoRouteData.$route(
 );
 
 final GoRoute _relativeGoRouteDataRedirect = RelativeGoRouteData.$route(
-  path: '/redirect',
+  path: 'redirect',
   factory: (GoRouterState state) => const _RelativeGoRouteDataRedirectPage(),
 );
 
@@ -277,9 +277,15 @@ String toBase64(String value) {
 }
 
 final List<GoRoute> _relativeRoutes = <GoRoute>[
-  _relativeGoRouteDataBuild,
-  _relativeGoRouteDataBuildPage,
-  _relativeGoRouteDataRedirect,
+  GoRouteData.$route(
+    path: '/',
+    factory: (GoRouterState state) => const _GoRouteDataBuild(),
+    routes: <RouteBase>[
+      _relativeGoRouteDataBuild,
+      _relativeGoRouteDataBuildPage,
+      _relativeGoRouteDataRedirect,
+    ],
+  ),
 ];
 
 void main() {
@@ -424,7 +430,7 @@ void main() {
       (WidgetTester tester) async {
         final GoRoute routeWithDefaultCaseSensitivity =
             RelativeGoRouteData.$route(
-          path: '/path',
+          path: 'path',
           factory: (GoRouterState state) => const _RelativeGoRouteDataBuild(),
         );
 
@@ -437,7 +443,7 @@ void main() {
       (WidgetTester tester) async {
         final GoRoute routeWithDefaultCaseSensitivity =
             RelativeGoRouteData.$route(
-          path: '/path',
+          path: 'path',
           caseSensitive: false,
           factory: (GoRouterState state) => const _RelativeGoRouteDataBuild(),
         );
@@ -475,7 +481,7 @@ void main() {
         }
 
         await expectUnimplementedError((BuildContext context) {
-          const _RelativeGoRouteDataBuild().location;
+          const _RelativeGoRouteDataBuild().subpath;
         });
 
         await expectUnimplementedError((BuildContext context) {
