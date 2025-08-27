@@ -1021,6 +1021,8 @@ class _RouteMatchListDecoder
         input[RouteMatchListCodec._extraKey]! as Map<Object?, Object?>;
     final Object? extra;
 
+    print('decoding');
+
     if (encodedExtra[RouteMatchListCodec._codecKey] ==
         RouteMatchListCodec._jsonCodecName) {
       extra = json.decoder.convert(
